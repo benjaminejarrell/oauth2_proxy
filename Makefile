@@ -51,13 +51,11 @@ docker:
 
 .PHONY: docker-all
 docker-all: docker
-	docker build -f Dockerfile -t pusher/oauth2_proxy:latest-amd64 .
 	docker build -f Dockerfile -t pusher/oauth2_proxy:${VERSION} .
-	docker build -f Dockerfile -t pusher/oauth2_proxy:${VERSION}-amd64 .
-	docker build -f Dockerfile.arm64 -t pusher/oauth2_proxy:latest-arm64 .
-	docker build -f Dockerfile.arm64 -t pusher/oauth2_proxy:${VERSION}-arm64 .
-	docker build -f Dockerfile.armv6 -t pusher/oauth2_proxy:latest-armv6 .
-	docker build -f Dockerfile.armv6 -t pusher/oauth2_proxy:${VERSION}-armv6 .
+	docker build -f Dockerfile.arm64 -t pusher/oauth2_proxy-arm64:latest .
+	docker build -f Dockerfile.arm64 -t pusher/oauth2_proxy-arm64:${VERSION} .
+	docker build -f Dockerfile.armv6 -t pusher/oauth2_proxy-armv6:latest .
+	docker build -f Dockerfile.armv6 -t pusher/oauth2_proxy-armv6:${VERSION} .
 
 .PHONY: test
 test: dep lint
