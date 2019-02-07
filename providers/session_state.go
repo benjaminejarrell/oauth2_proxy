@@ -1,12 +1,17 @@
 package providers
 
 import (
+	"encoding/base64"
 	"fmt"
+	"github.com/bitly/oauth2_proxy/cookie"
 	"strconv"
 	"strings"
 	"time"
+<<<<<<< HEAD
 
 	"github.com/pusher/oauth2_proxy/cookie"
+=======
+>>>>>>> branch
 )
 
 // SessionState is used to store information about the currently authenticated user session
@@ -17,6 +22,8 @@ type SessionState struct {
 	RefreshToken string
 	Email        string
 	User         string
+	ID           string
+	Groups       string
 }
 
 // IsExpired checks whether the session has expired
@@ -42,6 +49,9 @@ func (s *SessionState) String() string {
 	if s.RefreshToken != "" {
 		o += " refresh_token:true"
 	}
+	if s.Groups != "" {
+		o += fmt.Sprintf(" groups:%s", s.Groups)
+	}
 	return o + "}"
 }
 
@@ -54,7 +64,7 @@ func (s *SessionState) EncodeSessionState(c *cookie.Cipher) (string, error) {
 }
 
 func (s *SessionState) accountInfo() string {
-	return fmt.Sprintf("email:%s user:%s", s.Email, s.User)
+	return fmt.Sprintf("email:%s user:%s id:%s", s.Email, s.User, s.ID)
 }
 
 // EncryptedString encrypts the session state into a cookie string
@@ -81,22 +91,38 @@ func (s *SessionState) EncryptedString(c *cookie.Cipher) (string, error) {
 			return "", err
 		}
 	}
+<<<<<<< HEAD
 	return fmt.Sprintf("%s|%s|%s|%d|%s", s.accountInfo(), a, i, s.ExpiresOn.Unix(), r), nil
+=======
+
+	encoded_groups := base64.StdEncoding.EncodeToString([]byte(s.Groups))
+
+	return fmt.Sprintf("%s|%s|%d|%s|%s", s.accountInfo(), a, s.ExpiresOn.Unix(), r, encoded_groups), nil
+>>>>>>> branch
 }
 
 func decodeSessionStatePlain(v string) (s *SessionState, err error) {
 	chunks := strings.Split(v, " ")
-	if len(chunks) != 2 {
-		return nil, fmt.Errorf("could not decode session state: expected 2 chunks got %d", len(chunks))
+	if len(chunks) != 3 {
+		return nil, fmt.Errorf("could not decode session state: expected 3 chunks got %d", len(chunks))
 	}
 
 	email := strings.TrimPrefix(chunks[0], "email:")
 	user := strings.TrimPrefix(chunks[1], "user:")
+	uid := strings.TrimPrefix(chunks[2], "id:")
 	if user == "" {
 		user = strings.Split(email, "@")[0]
 	}
 
-	return &SessionState{User: user, Email: email}, nil
+	return &SessionState{User: user, Email: email, ID: uid}, nil
+}
+
+func decodeUserGroups(v string) (groups string, err error) {
+	decoded_groups, err := base64.StdEncoding.DecodeString(v)
+	if err != nil {
+		return "", err
+	}
+	return string(decoded_groups), nil
 }
 
 // DecodeSessionState decodes the session cookie string into a SessionState
@@ -116,6 +142,7 @@ func DecodeSessionState(v string, c *cookie.Cipher) (s *SessionState, err error)
 		return nil, err
 	}
 
+	// Access Token
 	if chunks[1] != "" {
 		if sessionState.AccessToken, err = c.Decrypt(chunks[1]); err != nil {
 			return nil, err
@@ -131,8 +158,21 @@ func DecodeSessionState(v string, c *cookie.Cipher) (s *SessionState, err error)
 	ts, _ := strconv.Atoi(chunks[3])
 	sessionState.ExpiresOn = time.Unix(int64(ts), 0)
 
+<<<<<<< HEAD
 	if chunks[4] != "" {
 		if sessionState.RefreshToken, err = c.Decrypt(chunks[4]); err != nil {
+=======
+	// Refresh Token
+	if chunks[3] != "" {
+		if sessionState.RefreshToken, err = c.Decrypt(chunks[3]); err != nil {
+>>>>>>> branch
+			return nil, err
+		}
+	}
+
+	// User groups
+	if chunks[4] != "" {
+		if sessionState.Groups, err = decodeUserGroups(chunks[4]); err != nil {
 			return nil, err
 		}
 	}

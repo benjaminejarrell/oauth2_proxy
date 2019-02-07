@@ -3,6 +3,13 @@
 # for detailed Gopkg.toml documentation.
 #
 
+<<<<<<< HEAD
+=======
+[[override]]
+  name = "github.com/18F/hmacauth"
+  version = "~1.0.1"
+
+>>>>>>> branch
 [[constraint]]
   name = "github.com/BurntSushi/toml"
   version = "~0.3.0"
@@ -31,6 +38,7 @@
   branch = "master"
   name = "google.golang.org/api"
 
+<<<<<<< HEAD
 [[constraint]]
   name = "gopkg.in/fsnotify/fsnotify.v1"
   version = "~1.2.0"
@@ -38,3 +46,9 @@
 [[constraint]]
   branch = "master"
   name = "golang.org/x/crypto"
+=======
+[[override]]
+  name = "gopkg.in/fsnotify.v1"
+  version = "~1.4.7"
+  source = "https://github.com/fsnotify/fsnotify/archive/v1.4.7.tar.gz"
+>>>>>>> branch

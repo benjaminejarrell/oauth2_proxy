@@ -77,11 +77,15 @@
   branch = "master"
   digest = "1:386e12afcfd8964907c92dffd106860c0dedd71dbefae14397b77b724a13343b"
   name = "github.com/pquerna/cachecontrol"
+<<<<<<< HEAD
   packages = [
     ".",
     "cacheobject",
   ]
   pruneopts = ""
+=======
+  packages = [".","cacheobject"]
+>>>>>>> branch
   revision = "0dec1b30a0215bb68605dfc568e8855066c9202d"
 
 [[projects]]
@@ -96,6 +100,7 @@
   branch = "master"
   digest = "1:f6a006d27619a4d93bf9b66fe1999b8c8d1fa62bdc63af14f10fbe6fcaa2aa1a"
   name = "golang.org/x/crypto"
+<<<<<<< HEAD
   packages = [
     "bcrypt",
     "blowfish",
@@ -103,23 +108,31 @@
     "ed25519/internal/edwards25519",
   ]
   pruneopts = ""
+=======
+  packages = ["bcrypt","blowfish","ed25519","ed25519/internal/edwards25519"]
+>>>>>>> branch
   revision = "9f005a07e0d31d45e6656d241bb5c0f2efd4bc94"
 
 [[projects]]
   branch = "master"
   digest = "1:130b1bec86c62e121967ee0c69d9c263dc2d3ffe6c7c9a82aca4071c4d068861"
   name = "golang.org/x/net"
+<<<<<<< HEAD
   packages = [
     "context",
     "context/ctxhttp",
   ]
   pruneopts = ""
+=======
+  packages = ["context","context/ctxhttp"]
+>>>>>>> branch
   revision = "9dfe39835686865bff950a07b394c12a98ddc811"
 
 [[projects]]
   branch = "master"
   digest = "1:4a61176e8386727e4847b21a5a2625ce56b9c518bc543a28226503e701265db0"
   name = "golang.org/x/oauth2"
+<<<<<<< HEAD
   packages = [
     ".",
     "google",
@@ -128,10 +141,14 @@
     "jwt",
   ]
   pruneopts = ""
+=======
+  packages = [".","google","internal","jws","jwt"]
+>>>>>>> branch
   revision = "9ff8ebcc8e241d46f52ecc5bff0e5a2f2dbef402"
 
 [[projects]]
   branch = "master"
+<<<<<<< HEAD
   digest = "1:dc1fb726dbbe79c86369941eae1e3b431b8fc6f11dbd37f7899dc758a43cc3ed"
   name = "google.golang.org/api"
   packages = [
@@ -141,11 +158,28 @@
     "googleapi/internal/uritemplates",
   ]
   pruneopts = ""
+=======
+  name = "golang.org/x/sync"
+  packages = ["semaphore"]
+  revision = "37e7f081c4d4c64e13b10787722085407fe5d15f"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/sys"
+  packages = ["unix"]
+  revision = "302c3dd5f1cc82baae8e44d9c3178e89b6e2b345"
+
+[[projects]]
+  branch = "master"
+  name = "google.golang.org/api"
+  packages = ["admin/directory/v1","bigquery/v2","books/v1","calendar/v3","compute/v1","drive/v2","fitness/v1","gensupport","gmail/v1","googleapi","googleapi/internal/uritemplates","iterator","iterator/testing","mirror/v1","prediction/v1.6","pubsub/v1beta2","storage/v1","tasks/v1","urlshortener/v1","youtube/v3"]
+>>>>>>> branch
   revision = "8791354e7ab150705ede13637a18c1fcc16b62e8"
 
 [[projects]]
   digest = "1:934fb8966f303ede63aa405e2c8d7f0a427a05ea8df335dfdc1833dd4d40756f"
   name = "google.golang.org/appengine"
+<<<<<<< HEAD
   packages = [
     ".",
     "internal",
@@ -159,6 +193,9 @@
     "urlfetch",
   ]
   pruneopts = ""
+=======
+  packages = [".","internal","internal/app_identity","internal/base","internal/datastore","internal/log","internal/modules","internal/remote_api","internal/urlfetch","urlfetch"]
+>>>>>>> branch
   revision = "150dc57a1b433e64154302bdc40b6bb8aefa313a"
   version = "v1.0.0"
 
@@ -166,25 +203,36 @@
   digest = "1:cb5b2a45a3dd41c01ff779c54ae4c8aab0271d6d3b3f734c8a8bd2c890299ef2"
   name = "gopkg.in/fsnotify/fsnotify.v1"
   packages = ["."]
+<<<<<<< HEAD
   pruneopts = ""
   revision = "836bfd95fecc0f1511dd66bdbf2b5b61ab8b00b6"
   version = "v1.2.11"
+=======
+  revision = "c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9"
+  source = "https://github.com/fsnotify/fsnotify/archive/v1.4.7.tar.gz"
+  version = "v1.4.7"
+>>>>>>> branch
 
 [[projects]]
   digest = "1:be4ed0a2b15944dd777a663681a39260ed05f9c4e213017ed2e2255622c8820c"
   name = "gopkg.in/square/go-jose.v2"
+<<<<<<< HEAD
   packages = [
     ".",
     "cipher",
     "json",
   ]
   pruneopts = ""
+=======
+  packages = [".","cipher","json"]
+>>>>>>> branch
   revision = "f8f38de21b4dcd69d0413faf231983f5fd6634b1"
   version = "v2.1.3"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
+<<<<<<< HEAD
   input-imports = [
     "github.com/BurntSushi/toml",
     "github.com/bitly/go-simplejson",
@@ -199,5 +247,8 @@
     "google.golang.org/api/googleapi",
     "gopkg.in/fsnotify/fsnotify.v1",
   ]
+=======
+  inputs-digest = "cfa015a3f81770b9204b35318aca2c57890d00e73549742a231f255923727773"
+>>>>>>> branch
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -175,8 +175,8 @@ func NewTestProvider(providerURL *url.URL, emailAddress string) *TestProvider {
 	}
 }
 
-func (tp *TestProvider) GetEmailAddress(session *providers.SessionState) (string, error) {
-	return tp.EmailAddress, nil
+func (tp *TestProvider) GetUserDetails(session *providers.SessionState) (map[string]string, error) {
+	return map[string]string{"email": tp.EmailAddress, "id": "", "user": ""}, nil
 }
 
 func (tp *TestProvider) ValidateSessionState(session *providers.SessionState) bool {
